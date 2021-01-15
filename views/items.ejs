@@ -21,9 +21,9 @@
             <img class="card-img-top" src="<%= menuItem.picUrl %>" width="100%">
             <div class="card-body">
                 <h3 class="card-title"><%= menuItem.title %></h3>
-                <p class="card-text"> Описание:
-                    <%= menuItem.description %><br> Цена: $<%= menuItem.price %>
-                </p>
+                <p class="card-text"><%= menuItem.description %></p>
+
+                <h4>Цена:</h4> <p>$<%= menuItem.price %></p>
                 <button class="btn btn-primary add-item" id="<%= menuItem.id %>">Добавить в корзину</button>
             </div>
         </div>
