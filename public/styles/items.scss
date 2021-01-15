@@ -1,8 +1,9 @@
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 
     .card {
-        margin: 0.5em 1em;
+        margin: 1em;
     }
 }

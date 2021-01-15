@@ -17,7 +17,7 @@
 <div class="container">
 
     <% for ( let menuItem of menuItems) { %>
-        <div id="<%= menuItem.id %>" class="card" style="width: 18rem;">
+        <div item-id="<%= menuItem.id %>" class="card" style="width: 18rem;">
             <img class="card-img-top" src="<%= menuItem.picUrl %>" width="100%">
             <div class="card-body">
                 <h3 class="card-title"><%= menuItem.title %></h3>
