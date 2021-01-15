@@ -1,6 +1,5 @@
 const Express = require('express');
 const itemsRouter = Express.Router();
-
 const dbConnection = require('../firebird-controller').Connection;
 
 
@@ -26,15 +25,10 @@ function getAllItems(callback) {
   });
 }
 
-
-
 itemsRouter.get('/', (req, res) => {
-  const DEFAULT_PIC_URL = 'imgs/dish.svg';
-
   getAllItems( (items) => {
     res.render('items', {menuItems: items})
   });
-
 })
 
 module.exports = itemsRouter;

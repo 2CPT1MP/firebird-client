@@ -7,15 +7,15 @@
 
     <script src="scripts/jquery.js"></script>
     <script src="scripts/boostrap.js"></script>
-    <script src="scripts/login.js"></script>
+    <script src="scripts/shopping-cart.js"></script>
 
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="styles/items.css">
     <title>Главная страница</title>
 </head>
 <body>
-<div class="container">
-
+    <a href="shopping-cart.html"><input type="button" class="btn btn-success" id="shopping-cart-btn" value="Перейти в корзину"></a>
+    <div class="container">
     <% for ( let menuItem of menuItems) { %>
         <div item-id="<%= menuItem.id %>" class="card" style="width: 18rem;">
             <img class="card-img-top" src="<%= menuItem.picUrl %>" width="100%">
@@ -24,12 +24,10 @@
                 <p class="card-text"> Описание:
                     <%= menuItem.description %><br> Цена: $<%= menuItem.price %>
                 </p>
-                <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                <button class="btn btn-primary add-item" id="<%= menuItem.id %>">Добавить в корзину</button>
             </div>
         </div>
     <% } %>
-
 </div>
-
 </body>
 </html>

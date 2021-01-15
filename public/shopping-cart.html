@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <script src="scripts/boostrap.js"></script>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/checkout.js"></script>
+    <title>Корзина</title>
+</head>
+<body>
+    <a href="/"><input type="button" class="btn btn-primary" value="Перейти к меню"></a>
+    <div class="container">
+        <h2>Ваш заказ: </h2>
+        <ul class="list-group" id="card-items-list">
+            <!--li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li-->
+        </ul>
+        <h2>Информация о вас: </h2>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Имя: </label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите ваше имя">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Фамилия: </label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Введите вашу фамилию">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Отчество: </label>
+                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Введите ваше отчество">
+                <small id="emailHelp1" class="form-text text-muted">Поле необязательное для заполнения</small>
+            </div>
+            <h2>Информация о доставке: </h2>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Адрес доставки: </label>
+                <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Введите имя">
+            </div>
+            <button type="submit" class="btn btn-success">Оформить заказ</button>
+        </form>
+
+    </div>
+</body>
+</html>
