@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/boostrap.js"></script>
+    <script src="scripts/login.js"></script>
+
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/items.css">
+    <title>Главная страница</title>
+</head>
+<body>
+<div class="container">
+
+    <% for ( let menuItem of menuItems) { %>
+        <div id="<%= menuItem.id %>" class="card" style="width: 18rem;">
+            <img class="card-img-top" src="<%= menuItem.picUrl %>" width="100%">
+            <div class="card-body">
+                <h3 class="card-title"><%= menuItem.title %></h3>
+                <p class="card-text"> Описание:
+                    <%= menuItem.description %><br> Цена: $<%= menuItem.price %>
+                </p>
+                <a href="#" class="btn btn-primary">Добавить в корзину</a>
+            </div>
+        </div>
+    <% } %>
+
+</div>
+
+</body>
+</html>

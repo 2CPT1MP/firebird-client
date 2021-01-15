@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+  justify-content: center; }
+  .container .card {
+    margin: 0.5em 1em; }
+
+/*# sourceMappingURL=items.css.map */
