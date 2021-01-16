@@ -8,6 +8,15 @@
 .remove-sm {
   display: none; }
 
+.title-h::before {
+  content: "Наименование"; }
+
+.quantity-h::before {
+  content: "Количество"; }
+
+.item-total-h::before {
+  content: "Стоимость"; }
+
 @media (min-width: 600px) {
   .item-price::after {
     content: ' / ед.'; } }
@@ -23,5 +32,14 @@
   .increment, .decrement, .remove-sm {
     padding: 0.25em;
     margin: 0.025em; } }
+@media (max-width: 365px) {
+  .title-h::before {
+    content: "Название"; }
+
+  .quantity-h::before {
+    content: "Кол-во"; }
+
+  .item-total-h::before {
+    content: "Цена"; } }
 
 /*# sourceMappingURL=checkout.css.map */

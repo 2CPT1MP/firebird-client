@@ -109,7 +109,7 @@ $(document).ready( () => {
     .then(res => { return res.json() })
     .then(menuItems => {
       const htmlItemsTable = $('#card-items-table');
-      htmlItemsTable.append('<tr><th class="item-num-h">№</th><th>Наименование</th><th class="item-price-h">Цена</th><th>Количество</th><th class="item-total-h">Стоимость</th><th></th>');
+      htmlItemsTable.append('<tr><th class="item-num-h">№</th><th class="title-h"></th><th class="item-price-h">Цена</th><th class="quantity-h"></th><th class="item-total-h"></th><th></th>');
       let num = 1;
 
       for (let item of menuItems) {
