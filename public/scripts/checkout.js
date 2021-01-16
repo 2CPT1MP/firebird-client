@@ -24,6 +24,74 @@ function getItemIdByStrKey(strKey) {
   return parseInt(strKey.substring(startIndex + 1, endIndex));
 }
 
+function capitalize(string) {
+   result = string.trim();
+   firstLetter = result.substr(0,1);
+   remainingStr = result.substr(1);
+
+   return `${firstLetter.toUpperCase() + remainingStr}`;
+}
+
+function addButtonListeners() {
+  $('.increment').click( function() {
+    const itemId = this.parentNode.parentNode.id;
+    const itemIdKey = `item{${itemId}}`;
+    let itemCount = parseInt(localStorage.getItem(itemIdKey));
+
+    if (itemCount + 1 < 10) {
+      localStorage.setItem(itemIdKey, (++itemCount).toString());
+
+      const itemRecord = this.parentNode.parentNode;
+
+      const itemPrice = itemRecord.getElementsByClassName('item-price')[0];
+      const itemQuantity = this.parentNode.getElementsByClassName('item-quantity-span')[0];
+      const itemTotal =  itemRecord.getElementsByClassName('item-total')[0];
+      itemQuantity.innerHTML = itemCount;
+
+      console.log(parseInt(itemPrice.innerHTML), parseInt(itemQuantity.innerHTML));
+      console.log(itemPrice.innerHTML, );
+      itemTotal.innerHTML = parseInt(itemPrice.innerHTML) * parseInt(itemQuantity.innerHTML);
+
+    }
+  });
+
+  $('.decrement').click( function() {
+    const itemId = this.parentNode.parentNode.id;
+    const itemIdKey = `item{${itemId}}`;
+    let itemCount = parseInt(localStorage.getItem(itemIdKey));
+
+
+    if (itemCount - 1 > 0) {
+      localStorage.setItem(itemIdKey, (--itemCount).toString());
+
+      const itemRecord = this.parentNode.parentNode;
+
+      const itemPrice = itemRecord.getElementsByClassName('item-price')[0];
+      const itemQuantity = this.parentNode.getElementsByClassName('item-quantity-span')[0];
+      const itemTotal =  itemRecord.getElementsByClassName('item-total')[0];
+      itemQuantity.innerHTML = itemCount;
+
+      console.log(parseInt(itemPrice.innerHTML), parseInt(itemQuantity.innerHTML));
+      console.log(itemPrice.innerHTML, );
+      itemTotal.innerHTML = parseInt(itemPrice.innerHTML) * parseInt(itemQuantity.innerHTML);
+
+    }
+  }) ;
+
+  $('.remove').click( function() {
+    const itemId = this.parentNode.parentNode.id;
+    const itemIdKey = `item{${itemId}}`;
+
+    if (localStorage.getItem(itemIdKey) !== null) {
+      localStorage.removeItem(itemIdKey);
+      this.parentNode.parentNode.remove();
+    }
+  }) ;
+
+
+}
+
+
 $(document).ready( () => {
   const itemQuantityMap = getItemQuantityMap();
 
@@ -40,9 +108,21 @@ $(document).ready( () => {
   })
     .then(res => { return res.json() })
     .then(menuItems => {
-      const htmlItemsList = $('#card-items-list');
-      for (let item of menuItems)
-        htmlItemsList.append( $(`<li class="list-group-item" id=${item.id}>${item.title}</li>`) );
+      const htmlItemsTable = $('#card-items-table');
+      htmlItemsTable.append('<tr><th>№</th><th>Наименование</th><th>Цена</th><th>Количество</th><th>Стоимость</th><th></th>');
+      let num = 1;
+
+      for (let item of menuItems) {
+        item.quantity = localStorage.getItem(`item{${item.id}}`);
+
+        htmlItemsTable.append(
+            $(`<tr id="${item.id}">`).append(`<td>${num++}</td><td>${capitalize(item.title)}</td><td class="item-price">${item.price}</td>
+            <td><button class="btn btn-warning decrement">-</button><span class="item-quantity-span">${item.quantity}</span><button class="btn btn-success increment">+</button></td>
+            <td class="item-total">${(item.price * item.quantity).toFixed(2)}</td><td><button class="btn btn-danger remove">Удалить</button></td>`)
+        );
+
+      }
+      addButtonListeners();
     });
 });
 

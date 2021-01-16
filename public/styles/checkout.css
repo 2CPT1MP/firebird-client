@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.item-quantity-span {
+  padding: 0.5em; }
+
+.item-price::before, .item-total::before {
+  content: '$'; }
+
+.item-price::after {
+  content: ' / ед.'; }
+
+/*# sourceMappingURL=checkout.css.map */
