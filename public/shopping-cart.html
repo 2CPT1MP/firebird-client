@@ -30,24 +30,24 @@
         <h2>Ваш заказ: </h2>
         <table class="table" id="card-items-table"></table>
         <h2>Клиент: </h2>
-        <form>
+        <form id='order-form' method="POST" action="/orders">
             <div class="form-group">
-                <label for="exampleInputEmail1">Имя: </label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите имя" required>
+                <label for="firstNameInput">Имя: </label>
+                <input type="text" class="form-control" id="firstNameInput" placeholder="Введите имя" required>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Фамилия: </label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Введите фамилию" required>
+                <label for="lastNameInput">Фамилия: </label>
+                <input type="text" class="form-control" id="lastNameInput" placeholder="Введите фамилию" required>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Отчество: </label>
-                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Введите отчество">
-                <small id="emailHelp1" class="form-text text-muted">необязательно</small>
+                <label for="middleNameInput">Отчество: </label>
+                <input type="text" class="form-control" id="middleNameInput" placeholder="Введите отчество">
+                <small class="form-text text-muted">необязательно</small>
             </div>
             <h2>Доставка: </h2>
             <div class="form-group">
-                <label for="exampleInputEmail1">Адрес: </label>
-                <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Введите адрес доставки" required>
+                <label for="addressInput">Адрес: </label>
+                <input type="text" class="form-control" id="addressInput" placeholder="Введите адрес доставки" required>
             </div>
             <button type="submit" class="btn btn-success">Оформить заказ</button>
             <a href="/"><input type="button" class="btn btn-primary" value="Назад к меню"></a>
