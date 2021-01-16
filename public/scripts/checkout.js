@@ -1,56 +1,50 @@
 const cardItemRegex = /^item{\d}$/;
 
-function getAllMenuItems() {
-  const keys = Object.keys(localStorage);
-  let values = [];
+function getItemQuantityMap() {
+  const itemIds = Object.keys(localStorage);
+  const itemQuantityMap = [];
 
-  for (let key of keys) {
-    let item = localStorage.getItem(key);
+  for (let itemId of itemIds) {
+    let item = localStorage.getItem(itemId);
 
-    if (key.match(cardItemRegex)) {
-      let menuItem = {
-        id: getItemIdByStrKey(key),
+    if (itemId.match(cardItemRegex)) {
+      let itemQuantityRecord = {
+        id: getItemIdByStrKey(itemId),
         quantity: parseInt(item)
       }
-      values.push(menuItem);
+      itemQuantityMap.push(itemQuantityRecord);
     }
   }
-  return values;
+  return itemQuantityMap;
 }
 
-function getItemIdByStrKey(localStorageKey) {
-  let startIndex = localStorageKey.indexOf('{');
-  let endIndex = localStorageKey.indexOf('}');
-  let strKey = localStorageKey.substring(startIndex + 1, endIndex);
-
-  return parseInt(strKey);
+function getItemIdByStrKey(strKey) {
+  let startIndex = strKey.indexOf('{');
+  let endIndex = strKey.indexOf('}');
+  return parseInt(strKey.substring(startIndex + 1, endIndex));
 }
 
 $(document).ready( () => {
-  const menuItems = getAllMenuItems();
+  const itemQuantityMap = getItemQuantityMap();
 
-  let ids = [];
-  menuItems.forEach(value => ids.push(value.id));
-  const itemsList = $('#card-items-list');
+  if (itemQuantityMap.length === 0)
+    return;
 
-  let itemsData;
+  const itemIds = [];
+  itemQuantityMap.forEach(record => itemIds.push(record.id));
 
   fetch('/api/shopping-card-items', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
-    body: JSON.stringify({ ids: ids })
-    })
-      .then(res => {
-        return res.json()
-    })
-      .then(data => {
-        for (let item of data) {
-          itemsList.append(
-              $(`<li class="list-group-item" id=${item.id}>${item.title}</li>`)
-          );
-        }
-      });
-  });
+    body: JSON.stringify({ ids: itemIds })
+  })
+    .then(res => { return res.json() })
+    .then(menuItems => {
+      const htmlItemsList = $('#card-items-list');
+      for (let item of menuItems)
+        htmlItemsList.append( $(`<li class="list-group-item" id=${item.id}>${item.title}</li>`) );
+    });
+});
 
 
 

@@ -1,14 +1,16 @@
-
 $(document).ready(() => {
   $('.add-item').click(function() {
-    const id = this.id;
-    const quantity = localStorage.getItem('item{' +id + '}');
 
-    if (quantity === null) {
-      localStorage.setItem('item{' +id + '}', '1');
+    const item = {
+      id: `item{${this.id}}`,
+      quantity: localStorage.getItem(`item{${this.id}}`)
+    }
+
+    if (item.quantity === null) {
+      localStorage.setItem(item.id, '1');
     } else {
-      const newQuantity = parseInt(quantity) + 1;
-      localStorage.setItem('item{' +id +'}', newQuantity.toString())
+      item.quantity = parseInt(item.quantity) + 1;
+      localStorage.setItem(item.id, item.quantity);
     }
   });
 });
