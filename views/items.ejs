@@ -12,15 +12,27 @@
     <title>Главная страница</title>
 </head>
 <body>
-    <a href="shopping-cart.html"><input type="button" class="btn btn-success" id="shopping-cart-btn" value="Перейти в корзину"></a>
+<nav class="navbar navbar-dark bg-primary">
     <div class="container">
+        <h1 class="navbar-brand">Ресторан</h1>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Меню</a>
+            </li>
+            <li class="nav-item" id="shopping-cart-btn">
+                <a class="nav-link" href="shopping-cart.html">Корзина</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    <div class="container item-container">
     <% for ( let menuItem of menuItems) { %>
         <div item-id="<%= menuItem.id %>" class="card" style="width: 18rem;">
             <img class="card-img-top" src="<%= menuItem.picUrl %>" width="100%">
             <div class="card-body">
                 <h3 class="card-title"><%= menuItem.title %></h3>
                 <p class="card-text"><%= menuItem.description %></p>
-                <h4>Цена:</h4> <p>$<%= menuItem.price %></p>
+                <h4>Цена: <span>$<%= menuItem.price %></span></h4>
                 <button class="btn btn-primary add-item" id="<%= menuItem.id %>">Добавить в корзину</button>
             </div>
         </div>

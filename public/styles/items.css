@@ -1,13 +1,36 @@
-.container {
+.item-container {
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap; }
-  .container .card {
-    margin: 1em; }
+  flex-wrap: wrap;
+  border-radius: 0.25em; }
+  .item-container .card {
+    margin: 1em;
+    padding: 0.75em;
+    border-radius: 0.25em; }
+    .item-container .card h3 {
+      text-align: center;
+      text-transform: capitalize; }
+    .item-container .card p {
+      text-align: justify; }
+    .item-container .card h4 > span {
+      font-weight: normal; }
+  .item-container > div {
+    box-shadow: 0px 0px 0px 2px #337ab750; }
 
-#shopping-cart-btn {
-  position: absolute;
-  right: 3em;
-  top: 1.5em; }
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end; }
+  .nav li a {
+    color: white;
+    background-color: #337ab7;
+    border-radius: 0.25em; }
+    .nav li a.active {
+      background-color: white;
+      color: #337ab7; }
+    .nav li a:hover, .nav li a:focus {
+      background-color: #337ab7;
+      color: white; }
 
 /*# sourceMappingURL=items.css.map */
