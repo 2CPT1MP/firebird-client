@@ -109,16 +109,16 @@ $(document).ready( () => {
     .then(res => { return res.json() })
     .then(menuItems => {
       const htmlItemsTable = $('#card-items-table');
-      htmlItemsTable.append('<tr><th>№</th><th>Наименование</th><th>Цена</th><th>Количество</th><th>Стоимость</th><th></th>');
+      htmlItemsTable.append('<tr><th class="item-num-h">№</th><th>Наименование</th><th class="item-price-h">Цена</th><th>Количество</th><th class="item-total-h">Стоимость</th><th></th>');
       let num = 1;
 
       for (let item of menuItems) {
         item.quantity = localStorage.getItem(`item{${item.id}}`);
 
         htmlItemsTable.append(
-            $(`<tr id="${item.id}">`).append(`<td>${num++}</td><td>${capitalize(item.title)}</td><td class="item-price">${item.price}</td>
+            $(`<tr id="${item.id}">`).append(`<td class="item-num">${num++}</td><td>${capitalize(item.title)}</td><td class="item-price">${item.price}</td>
             <td><button class="btn btn-warning decrement">-</button><span class="item-quantity-span">${item.quantity}</span><button class="btn btn-success increment">+</button></td>
-            <td class="item-total">${(item.price * item.quantity).toFixed(2)}</td><td><button class="btn btn-danger remove">Удалить</button></td>`)
+            <td class="item-total">${(item.price * item.quantity).toFixed(2)}</td><td><button class="btn btn-danger remove">Удалить</button><button class="btn btn-danger remove remove-sm">х</button></td>`)
         );
 
       }

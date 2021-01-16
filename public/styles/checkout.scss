@@ -6,6 +6,36 @@
     content: '$';
 }
 
-.item-price::after {
-    content: ' / ед.';
+.remove-sm {
+    display: none;
+}
+
+@media(min-width: 600px) {
+    .item-price::after {
+        content: ' / ед.';
+    }
+}
+
+@media(max-width: 540px) {
+   .remove {
+       display: none;
+        &.remove-sm {
+            display: block;
+        }
+
+   }
+}
+
+@media (max-width: 485px) {
+    td.item-num, td.item-price, th.item-num-h, th.item-price-h {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .increment, .decrement, .remove-sm {
+        padding: 0.25em;
+        margin: 0.025em;
+
+    }
 }
