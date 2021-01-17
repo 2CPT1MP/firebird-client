@@ -80,37 +80,38 @@ function addButtonListeners() {
 
 function renderCheckoutTable(menuItems) {
   const htmlItemsTable = $('#card-items-table').append(
-      `<tr>
+      `<thead><tr>
             <th class="item-num-h">№</th>
             <th class="title-h"></th>
             <th class="item-price-h">Цена</th>
             <th class="quantity-h"></th>
             <th class="item-total-h"></th>
             <th></th>
-          </tr>
+          </tr></thead><tbody>
     `);
 
   let num = 1;
   for (let item of menuItems) {
     item.quantity = localStorage.getItem(`item{${item.id}}`);
     htmlItemsTable.append(
-        `<tr id="${item.id}" >
+        `<tr id="${item.id}" class="col-1" >
               <td class="item-num">${num++}</td>
               <td>${capitalize(item.title)}</td>
               <td class="item-price">${item.price}</td>
               <td class="item-quantity-td">
-                <button type="button" class="btn btn-outline-warning decrement">-</button>
+                <button type="button" class="btn btn-warning decrement">-</button>
                 <span class="item-quantity-span">${item.quantity}</span>
-                <button type="button" class="btn btn-outline-success increment">+</button>
+                <button type="button" class="btn btn-success increment">+</button>
               </td>
               <td class="item-total">${(item.price * item.quantity).toFixed(2)}</td>
-              <td>
-                <button type="button" class="btn btn-outline-danger remove">Удалить</button>
-                <button type="button" class="btn btn-outline-danger remove remove-sm">х</button>
+              <td class="col-1">
+                <button type="button" class="btn btn-danger remove">Удалить</button>
+                <button type="button" class="btn btn-danger remove remove-sm">х</button>
               </td>
            </tr>
           `
     );
+    htmlItemsTable.append('</tbody>')
   }
 }
 
