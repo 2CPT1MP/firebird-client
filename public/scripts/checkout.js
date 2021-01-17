@@ -78,6 +78,40 @@ function addButtonListeners() {
   }) ;
 }
 
+function renderCheckoutTable(menuItems) {
+  const htmlItemsTable = $('#card-items-table').append(
+      `<tr>
+            <th class="item-num-h">№</th>
+            <th class="title-h"></th>
+            <th class="item-price-h">Цена</th>
+            <th class="quantity-h"></th>
+            <th class="item-total-h"></th>
+            <th></th>
+          </tr>
+    `);
+
+  let num = 1;
+  for (let item of menuItems) {
+    item.quantity = localStorage.getItem(`item{${item.id}}`);
+    htmlItemsTable.append(
+        `<tr id="${item.id}">
+              <td class="item-num">${num++}</td>
+              <td>${capitalize(item.title)}</td>
+              <td class="item-price">${item.price}</td>
+              <td><button class="btn btn-warning decrement">-</button>
+                <span class="item-quantity-span">${item.quantity}</span>
+                <button class="btn btn-success increment">+</button>
+              </td>
+              <td class="item-total">${(item.price * item.quantity).toFixed(2)}</td>
+              <td>
+                <button class="btn btn-danger remove">Удалить</button>
+                <button class="btn btn-danger remove remove-sm">х</button>
+              </td>
+           </tr>
+          `
+    );
+  }
+}
 
 $(document).ready( () => {
   const itemQuantityMap = getItemQuantityMap();
@@ -95,44 +129,29 @@ $(document).ready( () => {
     .then(menuItems => {
       renderCheckoutTable(menuItems);
       addButtonListeners();
+      $('#orderDataForm').submit( e => submitOrderData(e));
     });
-
-
-  function renderCheckoutTable(menuItems) {
-    const htmlItemsTable = $('#card-items-table').append(
-        `<tr>
-            <th class="item-num-h">№</th>
-            <th class="title-h"></th>
-            <th class="item-price-h">Цена</th>
-            <th class="quantity-h"></th>
-            <th class="item-total-h"></th>
-            <th></th>
-          </tr>
-    `);
-
-    let num = 1;
-    for (let item of menuItems) {
-      item.quantity = localStorage.getItem(`item{${item.id}}`);
-      htmlItemsTable.append(
-          `<tr id="${item.id}">
-              <td class="item-num">${num++}</td>
-              <td>${capitalize(item.title)}</td>
-              <td class="item-price">${item.price}</td>
-              <td><button class="btn btn-warning decrement">-</button>
-                <span class="item-quantity-span">${item.quantity}</span>
-                <button class="btn btn-success increment">+</button>
-              </td>
-              <td class="item-total">${(item.price * item.quantity).toFixed(2)}</td>
-              <td>
-                <button class="btn btn-danger remove">Удалить</button>
-                <button class="btn btn-danger remove remove-sm">х</button>
-              </td>
-           </tr>
-          `
-      );
-    }
-  }
 });
+
+async function submitOrderData(e) {
+  e.preventDefault();
+  let form = document.querySelector('form');
+  let formData = new FormData(form);
+
+  let jsonFormData = {};
+  formData.forEach((value, key) => {
+    jsonFormData[key] = value;
+  });
+
+  let response = await fetch('/orders', {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({clientData: jsonFormData, itemQuantityMap: getItemQuantityMap()})
+  });
+
+  let result = await response.json();
+}
+
 
 
 
