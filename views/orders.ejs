@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/boostrap.js"></script>
+    <script src="scripts/shopping-cart.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/items.css">
+    <link rel="stylesheet" href="styles/orders.css">
+    <title>Главная страница</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <h1 class="navbar-brand">Ресторан</h1>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Меню</a>
+            </li>
+            <li class="nav-item" id="shopping-cart-btn">
+                <a class="nav-link" href="shopping-cart.html">Корзина</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container item-container">
+    <h2>Заказы:</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th><th>Заказан</th><th>Состояние</th><th>Клиент</th><th>Адрес доставки</th><th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for (let order of orders) {%>
+            <% let orderTime = new Date(order.time); %>
+            <% let orderMonth = orderTime.getMonth() + 1;%>
+            <% let orderDate = orderTime.getDate();%>
+            <% if (orderMonth < 10) {%>
+                <% orderMonth = `0${orderMonth}`; %>
+            <% } %>
+            <% if (orderDate < 10) {%>
+                <% orderDate = `0${orderDate}`; %>
+            <% } %>
+            <tr class="<%= order.status %>">
+                <td><%= order.id %></td>
+                <td><%= `${orderTime.getDate()}.${orderMonth}.${orderTime.getFullYear()} ${orderTime.getHours()}:${orderTime.getMinutes()}:${orderTime.getSeconds()}` %></td>
+                <td><%= order.status %></td>
+                <td><%= order.client.firstName +' ' +order.client.lastName%></td>
+                <td><%= order.delivery.address + ' (' +order.delivery.type +')' %></td>
+                <td><button class="btn btn-primary">Состав</button></td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
