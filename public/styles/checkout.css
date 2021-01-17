@@ -1,6 +1,18 @@
 @charset "UTF-8";
+.nav li a {
+  color: white;
+  border-radius: 5px; }
+  .nav li a.active {
+    background-color: white;
+    color: #0d6efd; }
+  .nav li a:hover:not(.nav li a:hover.active):not(.nav li a:focus.active), .nav li a:focus:not(.nav li a:hover.active):not(.nav li a:focus.active) {
+    background-color: #0d6efd;
+    color: white; }
+
 .item-quantity-span {
-  padding: 0.5em; }
+  display: inline-block;
+  width: 25px;
+  text-align: center; }
 
 .item-price::before, .item-total::before {
   content: '$'; }

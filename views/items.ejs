@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/boostrap.js"></script>
+
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="scripts/shopping-cart.js"></script>
-    <link rel="stylesheet" href="styles/bootstrap.css">
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/items.css">
     <title>Главная страница</title>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-primary">
     <div class="container">
-        <h1 class="navbar-brand">Ресторан</h1>
+        <h1 class="navbar-brand display-1">Ресторан</h1>
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Меню</a>
@@ -25,14 +27,14 @@
         </ul>
     </div>
 </nav>
-    <div class="container item-container">
+    <div class="container item-container mt-4">
     <% for ( let menuItem of menuItems) { %>
-        <div item-id="<%= menuItem.id %>" class="card" style="width: 18rem;">
+        <div item-id="<%= menuItem.id %>" class="card">
             <img class="card-img-top" src="<%= menuItem.picUrl %>" width="100%">
             <div class="card-body">
-                <h3 class="card-title"><%= menuItem.title %></h3>
-                <p class="card-text"><%= menuItem.description %></p>
-                <h4>Цена: <span>$<%= menuItem.price %></span></h4>
+                <h3 class="card-title item-title"><%= menuItem.title %></h3>
+                <p class="card-text item-description"><%= menuItem.description %></p>
+                <h4 class="item-price">Цена: <span>$<%= menuItem.price %></span></h4>
                 <button class="btn btn-primary add-item" id="<%= menuItem.id %>">Добавить в корзину</button>
             </div>
         </div>

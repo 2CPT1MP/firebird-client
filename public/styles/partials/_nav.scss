@@ -1,0 +1,18 @@
+@import "props";
+
+.nav li a {
+    color: white;
+    border-radius: $border-radius;
+
+    &.active {
+        background-color: white;
+        color: $primary-color;
+    }
+
+    &:hover, &:focus {
+        &:not(&.active) {
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+}

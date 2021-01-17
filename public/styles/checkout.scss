@@ -1,5 +1,9 @@
+@import "partials/nav";
+
 .item-quantity-span {
-    padding: 0.5em;
+    display: inline-block;
+    width: 25px;
+    text-align: center;
 }
 
 .item-price::before, .item-total::before {
@@ -21,10 +25,6 @@
     content: 'Стоимость'
 }
 
-
-
-
-
 @media(min-width: 600px) {
     .item-price::after {
         content: ' / ед.';
@@ -37,7 +37,6 @@
         &.remove-sm {
             display: block;
         }
-
    }
 }
 
@@ -51,7 +50,6 @@
     .increment, .decrement, .remove-sm {
         padding: 0.25em;
         margin: 0.025em;
-
     }
 }
 
@@ -66,3 +64,4 @@
         content: 'Цена'
     }
 }
+

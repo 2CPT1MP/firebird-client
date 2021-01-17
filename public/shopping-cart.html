@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles/bootstrap.css">
-    <link rel="stylesheet" href="styles/items.css">
-    <link rel="stylesheet" href="styles/checkout.css">
-    <script src="scripts/boostrap.js"></script>
-    <script src="scripts/jquery.js"></script>
+
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="scripts/checkout.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/checkout.css">
     <title>Корзина</title>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-primary">
     <div class="container">
-        <h1 class="navbar-brand">Ресторан</h1>
+        <h1 class="navbar-brand display-1" >Ресторан</h1>
         <ul class="nav ">
             <li class="nav-item ">
                 <a class="nav-link" aria-current="page" href="/">Меню</a>
@@ -26,31 +27,40 @@
         </ul>
     </div>
 </nav>
-    <div class="container">
-        <h2>Ваш заказ: </h2>
-        <table class="table" id="card-items-table"></table>
+    <div class="container mt-4">
+        <div class="mt-5">
+            <h2>Ваш заказ: </h2>
+            <table class="table" id="card-items-table" >
+            </table>
+        </div>
+        <div class="mt-4">
         <h2>Клиент: </h2>
-        <form id="orderDataForm">
-            <div class="form-group">
+        <form id="orderDataForm" autocomplete="off">
+            <div class="form-group pb-2">
                 <label for="firstNameInput">Имя: </label>
                 <input type="text" class="form-control" name="firstNameInput" id="firstNameInput" placeholder="Введите имя" required>
             </div>
-            <div class="form-group">
+            <div class="form-group pb-2">
                 <label for="lastNameInput">Фамилия: </label>
                 <input type="text" class="form-control" name="lastNameInput" id="lastNameInput" placeholder="Введите фамилию" required>
             </div>
-            <div class="form-group">
+            <div class="form-group pb-2">
                 <label for="middleNameInput">Отчество: </label>
                 <input type="text" class="form-control" name="middleNameInput" id="middleNameInput" placeholder="Введите отчество">
                 <small class="form-text text-muted">необязательно</small>
             </div>
+        </div>
+        <div class="mt-4">
             <h2>Доставка: </h2>
             <div class="form-group">
                 <label for="addressInput">Адрес: </label>
                 <input type="text" class="form-control" name="addressInput" id="addressInput" placeholder="Введите адрес доставки" required>
             </div>
-            <button type="submit" class="btn btn-success">Оформить заказ</button>
-            <a href="/"><input type="button" class="btn btn-primary" value="Назад к меню"></a>
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Оформить заказ</button>
+            <a href="/"><input type="button" class="btn btn-outline-primary" value="Вернуться к меню"></a>
+        </div>
         </form>
     </div>
 </body>

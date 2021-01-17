@@ -1,37 +1,36 @@
+.nav li a {
+  color: white;
+  border-radius: 5px; }
+  .nav li a.active {
+    background-color: white;
+    color: #0d6efd; }
+  .nav li a:hover:not(.nav li a:hover.active):not(.nav li a:focus.active), .nav li a:focus:not(.nav li a:hover.active):not(.nav li a:focus.active) {
+    background-color: #0d6efd;
+    color: white; }
+
 .item-container {
   display: flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
-  border-radius: 0.25em; }
+  justify-content: center; }
   .item-container .card {
-    margin: 1em;
-    padding: 0.75em;
-    border-radius: 0.25em; }
-    .item-container .card h3 {
+    margin: 10px;
+    min-width: 250px;
+    width: 250px;
+    flex-grow: 1;
+    max-width: 400px; }
+    .item-container .card .item-title {
       text-align: center;
       text-transform: capitalize; }
-    .item-container .card p {
+    .item-container .card .item-description {
       text-align: justify; }
-    .item-container .card h4 > span {
+    .item-container .card .item-price > span {
       font-weight: normal; }
-  .item-container > div {
-    box-shadow: 0px 0px 1px 1px #337ab750; }
-
-.nav {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-end; }
-  .nav li a {
-    color: white;
-    background-color: #337ab7;
-    border-radius: 0.25em; }
-    .nav li a.active {
-      background-color: white;
-      color: #337ab7; }
-    .nav li a:hover, .nav li a:focus {
-      background-color: #337ab7;
-      color: white; }
+    .item-container .card .add-item {
+      width: 100%;
+      height: 50px; }
+  @media (max-width: 780px) {
+    .item-container .card {
+      max-width: 500px; } }
 
 @media (max-width: 660px) {
   .item-container {

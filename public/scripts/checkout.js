@@ -94,18 +94,19 @@ function renderCheckoutTable(menuItems) {
   for (let item of menuItems) {
     item.quantity = localStorage.getItem(`item{${item.id}}`);
     htmlItemsTable.append(
-        `<tr id="${item.id}">
+        `<tr id="${item.id}" >
               <td class="item-num">${num++}</td>
               <td>${capitalize(item.title)}</td>
               <td class="item-price">${item.price}</td>
-              <td><button class="btn btn-warning decrement">-</button>
+              <td class="item-quantity-td">
+                <button type="button" class="btn btn-outline-warning decrement">-</button>
                 <span class="item-quantity-span">${item.quantity}</span>
-                <button class="btn btn-success increment">+</button>
+                <button type="button" class="btn btn-outline-success increment">+</button>
               </td>
               <td class="item-total">${(item.price * item.quantity).toFixed(2)}</td>
               <td>
-                <button class="btn btn-danger remove">Удалить</button>
-                <button class="btn btn-danger remove remove-sm">х</button>
+                <button type="button" class="btn btn-outline-danger remove">Удалить</button>
+                <button type="button" class="btn btn-outline-danger remove remove-sm">х</button>
               </td>
            </tr>
           `
