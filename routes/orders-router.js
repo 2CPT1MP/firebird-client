@@ -3,8 +3,8 @@ const BodyParser = require('body-parser');
 const ordersRouter = Express.Router();
 const jsonParser = BodyParser.json();
 
-const dbConnection = require('../firebird-controller').Connection;
-const Orders = require('../models/Orders');
+const dbConnection = require('../firebird-connection');
+const Order = require('../models/Order');
 const Client = require('../models/Client');
 const Delivery = require('../models/Delivery');
 const OrderDetails = require('../models/OrderDetails');
@@ -16,7 +16,7 @@ ordersRouter.put('/',  jsonParser, async(req, res) => {
 
   const client = new Client(Math.floor(Math.random()*1000000), clientData.firstNameInput, clientData.lastNameInput, clientData.middleNameInput);
   const delivery = new Delivery(Math.floor(Math.random()*1000000), 'delivery', clientData.addressInput);
-  const order = new Orders.Order(Math.floor(Math.random()*1000000), "pending", null, delivery, client);
+  const order = new Order(Math.floor(Math.random()*1000000), "pending", null, delivery, client);
   const orderDetails = new OrderDetails(itemMap, order.id);
 
   await client.save();
@@ -31,7 +31,7 @@ ordersRouter.put('/',  jsonParser, async(req, res) => {
 });
 
 ordersRouter.get('/', async(req, res) => {
-  const orders = await Orders.getAll();
+  const orders = await Order.getAll();
   res.render('orders', {orders});
 });
 

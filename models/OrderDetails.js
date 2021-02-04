@@ -1,5 +1,5 @@
-const dbConnection = require('../firebird-controller').Connection;
-const MenuItem = require('../models/MenuItems').MenuItem;
+const dbConnection = require('../firebird-connection');
+const MenuItem = require('../models/MenuItem');
 
 class OrderDetails {
     constructor(itemQuantityMap, orderId, itemList=[]) {
@@ -7,21 +7,15 @@ class OrderDetails {
         this.orderId = orderId;
         this.itemList = itemList;
     }
-
-    addMenuItem(item) {
-        this.itemList.push(item);
-    }
+    addMenuItem(item) { this.itemList.push(item); }
 
     async save() {
         return new Promise(((resolve, reject) => {
             let insertBatchRequest = `EXECUTE BLOCK AS BEGIN\n`;
 
-            for (let item of this.itemQuantityMap) {
+            for (let item of this.itemQuantityMap)
                 insertBatchRequest += `INSERT INTO order_contents VALUES (${item.id}, ${this.orderId}, ${item.quantity});\n`;
-
-            }
             insertBatchRequest += `END`;
-            console.log(insertBatchRequest);
 
             dbConnection.query(insertBatchRequest, (error, result) => {
                 if (error) reject(error);

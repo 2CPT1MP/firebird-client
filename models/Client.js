@@ -1,4 +1,4 @@
-const dbConnection = require('../firebird-controller').Connection;
+const dbConnection = require('../firebird-connection');
 
 class Client {
   constructor(id, firstName, lastName, middleName) {
