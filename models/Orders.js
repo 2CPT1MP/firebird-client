@@ -15,6 +15,17 @@ class Order {
     this.client = client;
     this.operatorId = operatorId
   }
+
+  save(callback) {
+    const insertQuery = `INSERT INTO orders(id, status, order_time, delivery_id, client_id, operator_id) 
+                         VALUES(${this.id}, '${this.status}', '${this.time}', ${this.delivery.id}, ${this.client.id}, ${this.operatorId});`;
+    console.log(insertQuery);
+    dbConnection.query(insertQuery, (error, result) => {
+      if (error) throw error;
+      console.log('Inserted new order');
+      callback();
+    });
+  }
 }
 
 const getAllQuery =
