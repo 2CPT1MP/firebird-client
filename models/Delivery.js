@@ -7,17 +7,18 @@ class Delivery {
     this.address = address;
   }
 
-  save(callback) {
-    const insertQuery = `
+  async save() {
+    return new Promise(((resolve, reject) => {
+      const insertQuery = `
         INSERT INTO delivery_info
         VALUES (${this.id}, '${this.type}', '${this.address}');
-    `;
-    console.log(insertQuery);
-    dbConnection.query(insertQuery, (error, result) => {
-      if (error) throw error;
-      console.log('Inserted new delivery info');
-      callback();
-    });
+      `;
+
+      dbConnection.query(insertQuery, (error, result) => {
+        if (error) reject(error);
+        resolve();
+      });
+    }));
   }
 }
 

@@ -8,18 +8,18 @@ class Client {
     this.middleName = middleName;
   }
 
-  save(callback) {
-    const insertQuery = `
+  async save() {
+    return new Promise(((resolve, reject) => {
+      const insertQuery = `
         INSERT INTO client
         VALUES ('${this.firstName}', '${this.lastName}', '${this.middleName}', ${this.id});
-    `;
-    console.log(insertQuery)
-    dbConnection.query(insertQuery, (error, result) => {
-      if (error) throw error;
-      console.log('Inserted new client');
+      `;
 
-      callback();
-    });
+      dbConnection.query(insertQuery, (error, result) => {
+        if (error) reject(error);
+        resolve();
+      });
+    }));
   }
 }
 module.exports = Client;
